@@ -16,10 +16,19 @@
 
 let computerNum = 0; // 랜덤 번호 변수 정의
 
-// 랜덤 번호를 뽑을 function
+let playButton = document.getElementById("play-button"); // HTML에서 Button 가져오기.
+
+playButton.addEventListener("click", play);
+
+// 랜덤 번호를 뽑을 함수
 function pickRandomNum() {
   computerNum = Math.floor( Math.random() * 100 ); // Math.random() : 랜덤 숫자를 뽑을 수 있게 도와주는 함수, Math.floor() : 버림 함수
   console.log("정답 : ", computerNum);
+}
+
+// playButton의 addEventListener에 들어갈 함수
+function play() {
+  console.log("게임 시작");
 }
 
 pickRandomNum();
