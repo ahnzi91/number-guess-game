@@ -15,8 +15,8 @@
 // 사용자가 이미 입력한 숫자를 다시 한 번 입력하면 알려주고 기회를 차감하지 않는다.
 
 let computerNum = 0; // 랜덤 번호 변수 정의
-
 let playButton = document.getElementById("play-button"); // HTML에서 Button 가져오기.
+let userInput = document.getElementById("user-input"); // 사용자가 입력한 번호를 가져오기 위한 초석.
 
 playButton.addEventListener("click", play);
 
@@ -28,7 +28,9 @@ function pickRandomNum() {
 
 // playButton의 addEventListener에 들어갈 함수
 function play() {
-  console.log("게임 시작");
+  // 사용자가 입력한 번호 가져오기
+  let userValue = userInput.value;
+  console.log(userValue);
 }
 
 pickRandomNum();
