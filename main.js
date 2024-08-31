@@ -17,6 +17,7 @@
 let computerNum = 0; // 랜덤 번호 변수 정의
 let playButton = document.getElementById("play-button"); // HTML에서 Button 가져오기.
 let userInput = document.getElementById("user-input"); // 사용자가 입력한 번호를 가져오기 위한 초석.
+let resultArea = document.getElementById("result-area"); // 결과값을 보여주는 div
 
 playButton.addEventListener("click", play);
 
@@ -30,7 +31,13 @@ function pickRandomNum() {
 function play() {
   // 사용자가 입력한 번호 가져오기
   let userValue = userInput.value;
-  console.log(userValue);
+  if (userValue < computerNum) {
+    resultArea.textContent = "Up!!";
+  } else if (userValue > computerNum) {
+    resultArea.textContent = "Down!!";
+  } else {
+    resultArea.textContent = "정답입니다!!";
+  }
 }
 
 pickRandomNum();
