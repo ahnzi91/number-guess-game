@@ -9,11 +9,15 @@
 // 사용자가 이미 입력한 숫자를 다시 한 번 입력하면 알려주고 기회를 차감하지 않는다.
 
 let computerNum = 0; // 랜덤 번호 변수 정의
-let playButton = document.getElementById("play-button"); // HTML에서 Button 가져오기.
-let userInput = document.getElementById("user-input"); // 사용자가 입력한 번호를 가져오기 위한 초석.
-let resultArea = document.getElementById("result-area"); // 결과값을 보여주는 div
+let playButton = document.getElementById("play-button"); // 플레이 버튼 가져오기
+let userInput = document.getElementById("user-input"); // 사용자가 입력한 번호를 가져오기
+let resultArea = document.getElementById("result-area"); // 결과값 보여주는 div 가져오기
+let resetButton = document.getElementById("reset-button"); // 리셋 버튼 가져오기
+let chances = 5; // 남은 기회 5번
+let gameOver = false; // 게임 오버를 위한 변수
 
 playButton.addEventListener("click", play);
+resetButton.addEventListener("click", reset);
 
 // 랜덤 번호를 뽑을 함수
 function pickRandomNum() {
@@ -25,6 +29,10 @@ function pickRandomNum() {
 function play() {
   // 사용자가 입력한 번호 가져오기
   let userValue = userInput.value;
+
+  chances --; // 플레이 버튼 누를 때 마다 chances가 하나씩 줄어든다.
+  console.log("남은 기회 : ", chances);
+
   if (userValue < computerNum) {
     resultArea.textContent = "Up!!";
   } else if (userValue > computerNum) {
@@ -32,6 +40,28 @@ function play() {
   } else {
     resultArea.textContent = "정답입니다!!";
   }
+
+  if (chances < 1) {
+    gameOver = true;
+  }
+
+  console.log(gameOver);
+
+  if (gameOver === true) {
+    playButton.disabled = true;
+  }
+}
+
+// resetButton의 addEventListener에 들어갈 함수
+function reset() {
+  // 사용자 Input 창이 깨끗하게 정리가 되어야 한다.
+  userInput.value = "";
+  
+  // 새로운 번호가 생성이 된다.
+  pickRandomNum();
+  
+  // 문구가 새로 생성된다.
+  resultArea.textContent = "결과가 나온다.";
 }
 
 pickRandomNum();
