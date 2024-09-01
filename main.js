@@ -17,7 +17,7 @@ let chanceArea = document.getElementById("chance-area");
 
 let chances = 5; // 남은 기회 5번
 let gameOver = false; // 게임 오버를 위한 변수
-let histories = []; // 사용자가 입력했던 숫자를 담을 변수
+let histories = []; // 사용자가 입력한 숫자를 담을 변수
 
 playButton.addEventListener("click", play);
 resetButton.addEventListener("click", reset);
@@ -36,6 +36,14 @@ function play() {
   // Input 값에 대한 유효성 검사
   if (userValue < 1 || userValue > 100) {
     resultArea.textContent = "1~100 사이의 숫자를 입력해주세요!!";
+    userInput.value = "";
+    userInput.focus();
+    return;
+  }
+
+  // 데이터 유효성 검사 : histories에 이미 사용자가 입력한 값이 있을 경우 처리
+  if (histories.includes(userValue)) {
+    resultArea.textContent = "이미 입력한 숫자입니다. 다른 숫자를 입력해주세요!!";
     userInput.value = "";
     userInput.focus();
     return;
