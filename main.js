@@ -13,6 +13,8 @@ let playButton = document.getElementById("play-button"); // 플레이 버튼 가
 let userInput = document.getElementById("user-input"); // 사용자가 입력한 번호를 가져오기
 let resultArea = document.getElementById("result-area"); // 결과값 보여주는 div 가져오기
 let resetButton = document.getElementById("reset-button"); // 리셋 버튼 가져오기
+let chanceArea = document.getElementById("chance-area");
+
 let chances = 5; // 남은 기회 5번
 let gameOver = false; // 게임 오버를 위한 변수
 
@@ -32,6 +34,8 @@ function play() {
 
   chances --; // 플레이 버튼 누를 때 마다 chances가 하나씩 줄어든다.
   console.log("남은 기회 : ", chances);
+
+  chanceArea.textContent = `남은 기회 : ${chances}번`;
 
   if (userValue < computerNum) {
     resultArea.textContent = "Up!!";
