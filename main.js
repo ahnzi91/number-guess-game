@@ -35,6 +35,8 @@ function play() {
   // Input 값에 대한 유효성 검사
   if (userValue < 1 || userValue > 100) {
     resultArea.textContent = "1~100 사이의 숫자를 입력해주세요!!";
+    userInput.value = "";
+    userInput.focus();
     return;
   }
 
@@ -42,7 +44,7 @@ function play() {
   console.log("남은 기회 : ", chances);
 
   chanceArea.textContent = `남은 기회 : ${chances}번`;
-x``
+  
   if (userValue < computerNum) {
     resultArea.textContent = "Up!!";
   } else if (userValue > computerNum) {
