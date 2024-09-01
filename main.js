@@ -32,11 +32,17 @@ function play() {
   // 사용자가 입력한 번호 가져오기
   let userValue = userInput.value;
 
+  // Input 값에 대한 유효성 검사
+  if (userValue < 1 || userValue > 100) {
+    resultArea.textContent = "1~100 사이의 숫자를 입력해주세요!!";
+    return;
+  }
+
   chances --; // 플레이 버튼 누를 때 마다 chances가 하나씩 줄어든다.
   console.log("남은 기회 : ", chances);
 
   chanceArea.textContent = `남은 기회 : ${chances}번`;
-
+x``
   if (userValue < computerNum) {
     resultArea.textContent = "Up!!";
   } else if (userValue > computerNum) {
