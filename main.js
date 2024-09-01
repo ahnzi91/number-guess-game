@@ -33,7 +33,7 @@ function play() {
   // 사용자가 입력한 번호 가져오기
   let userValue = userInput.value;
 
-  // Input 값에 대한 유효성 검사
+  // 데이터 유효성 검사 : userInput에 1 ~ 100 이외의 숫자를 입력했을 경우
   if (userValue < 1 || userValue > 100) {
     resultArea.textContent = "1~100 사이의 숫자를 입력해주세요!!";
     userInput.value = "";
@@ -60,6 +60,8 @@ function play() {
     resultArea.textContent = "Down!!";
   } else {
     resultArea.textContent = "정답입니다!!";
+    chanceArea.textContent = "";
+    gameOver = true;
   }
 
   // 사용자가 입력한 값 histories 배열에 넣어주기.
@@ -72,6 +74,9 @@ function play() {
   if (gameOver === true) {
     playButton.disabled = true;
   }
+
+  userInput.value = "";
+  userInput.focus();
 }
 
 // resetButton의 addEventListener에 들어갈 함수
@@ -79,11 +84,17 @@ function reset() {
   // 사용자 Input 창이 깨끗하게 정리가 되어야 한다.
   userInput.value = "";
   
+  // 찬스 초기화
+  chances = 5;
+
   // 새로운 번호가 생성이 된다.
   pickRandomNum();
-  
+
+  playButton.disabled = false;
+
   // 문구가 새로 생성된다.
-  resultArea.textContent = "결과가 나온다.";
+  resultArea.textContent = "숫자를 맞춰보세요.";
+  chanceArea.textContent = `남은 기회 : ${chances}번`;
 }
 
 pickRandomNum();
