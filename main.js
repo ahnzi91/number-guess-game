@@ -17,6 +17,7 @@ let chanceArea = document.getElementById("chance-area");
 
 let chances = 5; // 남은 기회 5번
 let gameOver = false; // 게임 오버를 위한 변수
+let histories = []; // 사용자가 입력했던 숫자를 담을 변수
 
 playButton.addEventListener("click", play);
 resetButton.addEventListener("click", reset);
@@ -44,7 +45,7 @@ function play() {
   console.log("남은 기회 : ", chances);
 
   chanceArea.textContent = `남은 기회 : ${chances}번`;
-  
+
   if (userValue < computerNum) {
     resultArea.textContent = "Up!!";
   } else if (userValue > computerNum) {
@@ -53,11 +54,12 @@ function play() {
     resultArea.textContent = "정답입니다!!";
   }
 
+  // 사용자가 입력한 값 histories 배열에 넣어주기.
+  histories.push(userValue);
+
   if (chances < 1) {
     gameOver = true;
   }
-
-  console.log(gameOver);
 
   if (gameOver === true) {
     playButton.disabled = true;
